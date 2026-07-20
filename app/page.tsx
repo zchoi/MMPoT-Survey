@@ -1,6 +1,6 @@
 "use client";
 
-/* eslint-disable @next/next/no-img-element -- static export uses pre-optimized local WebP figures */
+/* eslint-disable @next/next/no-img-element -- static export uses pre-rendered local figures */
 
 import { useState } from "react";
 
@@ -8,21 +8,29 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const asset = (path: string) => `${basePath}${path}`;
 
 const authors = [
-  "Haonan Zhang",
-  "Pengpeng Zeng*",
-  "Libin Cao",
-  "Wenrui Lai",
-  "Jinlong Li",
-  "Duo Peng",
-  "Yi Bin",
-  "Xuanhan Wang",
-  "Ji Zhang",
-  "Jingkuan Song",
-  "Nicu Sebe",
-  "Yuchuan Wu",
-  "Yongbin Li",
-  "Heng Tao Shen",
-  "Jieping Ye",
+  { name: "Haonan Zhang", affiliations: [1, 2] },
+  { name: "Pengpeng Zeng", affiliations: [1], corresponding: true },
+  { name: "Libin Cao", affiliations: [1] },
+  { name: "Wenrui Lai", affiliations: [1] },
+  { name: "Jinlong Li", affiliations: [3, 4] },
+  { name: "Duo Peng", affiliations: [1] },
+  { name: "Yi Bin", affiliations: [1] },
+  { name: "Xuanhan Wang", affiliations: [1] },
+  { name: "Ji Zhang", affiliations: [5] },
+  { name: "Jingkuan Song", affiliations: [1] },
+  { name: "Nicu Sebe", affiliations: [3] },
+  { name: "Yuchuan Wu", affiliations: [2] },
+  { name: "Yongbin Li", affiliations: [2] },
+  { name: "Heng Tao Shen", affiliations: [1] },
+  { name: "Jieping Ye", affiliations: [2] },
+];
+
+const affiliations = [
+  "School of Computer Science and Technology, Tongji University",
+  "Qwen-Character Team, Alibaba Group",
+  "Department of Information Engineering and Computer Science, University of Trento",
+  "Department of Computer Science, ETH Zürich",
+  "School of Computing and Artificial Intelligence, Southwest Jiaotong University",
 ];
 
 const familyData = {
@@ -179,17 +187,24 @@ export default function Home() {
 
               <div className="author-list" aria-label="Paper authors">
                 {authors.map((author) => (
-                  <span key={author}>{author}</span>
+                  <span className="author" key={author.name}>
+                    {author.name}
+                    <sup>
+                      {author.affiliations.join(",")}
+                      {author.corresponding ? "*" : ""}
+                    </sup>
+                  </span>
                 ))}
               </div>
               <p className="correspondence">* Corresponding author · is.pengpengzeng@gmail.com</p>
 
               <div className="affiliations" aria-label="Affiliations">
-                <span>Tongji University</span>
-                <span>Alibaba Qwen-Character</span>
-                <span>University of Trento</span>
-                <span>ETH Zürich</span>
-                <span>Southwest Jiaotong University</span>
+                {affiliations.map((affiliation, index) => (
+                  <span key={affiliation}>
+                    <sup>{index + 1}</sup>
+                    {affiliation}
+                  </span>
+                ))}
               </div>
 
               <div className="hero-actions">
@@ -209,36 +224,6 @@ export default function Home() {
                 </a>
               </div>
             </div>
-
-            <aside className="hero-system" aria-label="Survey highlights">
-              <div className="signal-card signal-vision">
-                <span>INPUT / 01</span>
-                <b>Visual evidence</b>
-              </div>
-              <div className="signal-card signal-feedback">
-                <span>FEEDBACK / 02</span>
-                <b>Human + AI intent</b>
-              </div>
-              <div className="core-card">
-                <span className="core-kicker">BEHAVIOR SHAPING</span>
-                <strong>MMPoT</strong>
-                <p>Refine · Ground · Reason · Adapt</p>
-                <div className="core-orbit" aria-hidden="true">
-                  <i />
-                  <i />
-                  <i />
-                </div>
-              </div>
-              <div className="system-output">
-                <span>OUTPUT</span>
-                <b>Dependable multimodal intelligence</b>
-              </div>
-              <div className="system-meta">
-                <div><strong>05</strong><span>behavior families</span></div>
-                <div><strong>04</strong><span>evaluation roles</span></div>
-                <div><strong>22→</strong><span>timeline to present</span></div>
-              </div>
-            </aside>
           </div>
         </header>
 
@@ -258,7 +243,7 @@ export default function Home() {
 
             <figure className="paper-figure framework-figure">
               <img
-                src={asset("/figures/intro.webp")}
+                src={asset("/figures/intro.png")}
                 alt="Overview of multimodal behavior shaping for MLLM post-training"
                 loading="eager"
               />

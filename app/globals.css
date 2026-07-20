@@ -187,7 +187,7 @@ img {
 
 .hero {
   position: relative;
-  min-height: 900px;
+  min-height: 760px;
   padding: 150px 0 92px;
   overflow: hidden;
   isolation: isolate;
@@ -242,15 +242,15 @@ img {
 }
 
 .hero-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1.18fr) minmax(390px, 0.82fr);
-  gap: 72px;
-  align-items: center;
+  display: block;
 }
 
 .hero-copy {
   position: relative;
   z-index: 2;
+  max-width: 1120px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .eyebrow,
@@ -275,8 +275,8 @@ img {
 }
 
 .hero h1 {
-  max-width: 880px;
-  margin: 24px 0 22px;
+  max-width: 1080px;
+  margin: 24px auto 22px;
   font-size: clamp(48px, 6.2vw, 82px);
   line-height: 0.98;
   letter-spacing: -0.064em;
@@ -305,7 +305,7 @@ img {
 
 .hero-subtitle {
   max-width: 720px;
-  margin: 0;
+  margin: 0 auto;
   color: #555568;
   font-size: clamp(17px, 2vw, 21px);
   line-height: 1.58;
@@ -314,18 +314,30 @@ img {
 .author-list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 4px 14px;
-  margin-top: 30px;
-  max-width: 760px;
+  max-width: 980px;
+  margin: 30px auto 0;
   font-size: 13.5px;
   font-weight: 650;
   line-height: 1.65;
 }
 
-.author-list span:not(:last-child)::after {
+.author-list > .author:not(:last-child)::after {
   content: "·";
   margin-left: 14px;
   color: rgba(23, 23, 42, 0.28);
+}
+
+.author-list sup {
+  position: relative;
+  top: -0.25em;
+  margin-left: 2px;
+  color: var(--violet-dark);
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.66em;
+  font-weight: 850;
+  letter-spacing: 0.02em;
 }
 
 .correspondence {
@@ -337,8 +349,10 @@ img {
 .affiliations {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 7px;
-  margin-top: 18px;
+  max-width: 1080px;
+  margin: 18px auto 0;
 }
 
 .affiliations span {
@@ -352,9 +366,17 @@ img {
   letter-spacing: 0.025em;
 }
 
+.affiliations sup {
+  margin-right: 5px;
+  color: var(--violet-dark);
+  font-size: 0.92em;
+  font-weight: 850;
+}
+
 .hero-actions {
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 32px;
@@ -691,6 +713,16 @@ img {
   font-size: 9px;
   font-weight: 800;
   letter-spacing: 0.12em;
+}
+
+.framework-figure figcaption {
+  margin-top: 20px;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.framework-figure figcaption span {
+  font-size: 12px;
 }
 
 .contribution-grid {

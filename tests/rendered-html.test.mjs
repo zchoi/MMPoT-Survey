@@ -22,7 +22,7 @@ test("ships the social card and core figures", async () => {
     [
       "og.jpg",
       "favicon.png",
-      "figures/intro.webp",
+      "figures/intro.png",
       "figures/mllm_post_training_timeline.webp",
       "figures/benchmark.webp",
     ].map((path) => access(new URL(path, root))),
