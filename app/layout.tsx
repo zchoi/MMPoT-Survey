@@ -33,9 +33,9 @@ export const metadata: Metadata = {
       "A behavior-shaping view of instruction following, preference calibration, reason enhancement, domain adaptation, and scalable learning.",
     images: [
       {
-        url: `${basePath}/og.png`,
-        width: 1536,
-        height: 1024,
+        url: `${basePath}/og.jpg`,
+        width: 1200,
+        height: 630,
         alt: "MMPoT survey: a unified map of multimodal post-training",
       },
     ],
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "A Survey on Post-training of Multimodal Large Language Models",
     description: "A unified map of multimodal post-training.",
-    images: [`${basePath}/og.png`],
+    images: [`${basePath}/og.jpg`],
   },
   icons: {
     icon: `${basePath}/favicon.png`,

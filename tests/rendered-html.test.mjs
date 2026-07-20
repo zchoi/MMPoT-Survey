@@ -20,7 +20,7 @@ test("exports a complete paper landing page", async () => {
 test("ships the social card and core figures", async () => {
   await Promise.all(
     [
-      "og.png",
+      "og.jpg",
       "favicon.png",
       "figures/intro.webp",
       "figures/mllm_post_training_timeline.webp",

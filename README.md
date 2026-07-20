@@ -15,7 +15,7 @@ It also links to the companion [Awesome Post-Training for MLLMs](https://github.
 ## Local development
 
 ```bash
-npm ci
+npm install
 npm run dev
 ```
 
