@@ -473,7 +473,7 @@ img {
 }
 
 .institution-card:nth-child(4) .institution-logo img {
-  transform: scale(2.5);
+  transform: scale(1.5);
 }
 
 .institution-card:nth-child(5) {
