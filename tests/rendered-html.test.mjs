@@ -14,7 +14,15 @@ test("exports a complete paper landing page", async () => {
   assert.match(html, /Domain Adaptation/);
   assert.match(html, /Scalable Learning/);
   assert.match(html, /Awesome-Post-Training-for-MLLMs/);
+  assert.match(html, /Multimodal Behavior-Shaping Loop/);
+  assert.match(html, /Key milestones of MLLMs post-training/);
+  assert.match(html, /A Venn diagram showing the interrelationships among key AI fields/);
+  assert.match(html, /An overall landscape of MLLMs post-training research/);
   assert.doesNotMatch(html, /Starter Project|Your site is taking shape/);
+  assert.doesNotMatch(
+    html,
+    /Unified lens|Five-family taxonomy|Evaluation loop|Research roadmap|Instruction activation|Feedback calibration|self-improvement/,
+  );
 
   const affiliationOrder = [
     "Tongji University",
@@ -36,13 +44,16 @@ test("ships the social card and core figures", async () => {
     [
       "og.jpg",
       "favicon.png",
+      "mm-pot-logo.png",
       "figures/intro.png",
-      "figures/mllm_post_training_timeline.webp",
+      "figures/mllm-post-training-timeline.png",
+      "figures/mllm-fields-venn.png",
+      "figures/mllm-post-training-landscape.png",
       "figures/benchmark.webp",
       "institutions/tongji.png",
       "institutions/qwen.png",
       "institutions/southwest-jiaotong.png",
-      "institutions/trento.svg",
+      "institutions/trento.png",
       "institutions/eth-zurich.png",
     ].map((path) => access(new URL(path, root))),
   );

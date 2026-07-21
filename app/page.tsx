@@ -141,10 +141,9 @@ export default function Home() {
       <nav className="site-nav" aria-label="Primary navigation">
         <div className="nav-inner shell">
           <a className="nav-brand" href="#top" aria-label="MMPoT survey — back to top">
-            <span className="brand-mark" aria-hidden="true">
-              M²
+            <span className="nav-brand-logo" aria-hidden="true">
+              <img src={asset("/mm-pot-logo.png")} alt="" />
             </span>
-            <span>MMPoT Survey</span>
           </a>
           <button
             className="menu-toggle"
@@ -246,7 +245,7 @@ export default function Home() {
             <div className="section-heading split-heading">
               <div>
                 <span className="section-index">01 / OVERVIEW</span>
-                <h2>From capability to behavior</h2>
+                <h2>Multimodal Behavior-Shaping Loop</h2>
               </div>
               <p>
                 Multimodal pretraining builds broad perception and alignment. Post-training
@@ -267,54 +266,67 @@ export default function Home() {
                 multimodal data and benchmarks close the refinement loop.
               </figcaption>
             </figure>
-
-            <div className="contribution-grid">
-              <article>
-                <span>01</span>
-                <h3>Unified lens</h3>
-                <p>Conceptualizes MLLM post-training as multimodal behavior shaping.</p>
-              </article>
-              <article>
-                <span>02</span>
-                <h3>Five-family taxonomy</h3>
-                <p>Clarifies the relationships, complements, and trade-offs among methods.</p>
-              </article>
-              <article>
-                <span>03</span>
-                <h3>Evaluation loop</h3>
-                <p>Connects datasets, feedback signals, benchmarks, and desirable behavior.</p>
-              </article>
-              <article>
-                <span>04</span>
-                <h3>Research roadmap</h3>
-                <p>Charts a path toward grounded, reliable, and generalist multimodal systems.</p>
-              </article>
-            </div>
           </div>
         </section>
 
         <section className="section timeline-section">
-          <div className="shell timeline-layout">
-            <div className="timeline-copy">
+          <div className="shell">
+            <div className="progressive-heading">
               <span className="section-index">PROGRESSIVE BEHAVIOR SHAPING</span>
-              <h2>Activation becomes policy refinement.</h2>
-              <p>
-                The field progresses from visual instruction following, through feedback alignment
-                and preference learning, to complex reasoning and online-policy distillation.
-              </p>
-              <div className="milestone-list">
-                <div><span>2022–23</span><b>Instruction activation</b></div>
-                <div><span>2023–24</span><b>Feedback calibration</b></div>
-                <div><span>2025→</span><b>Reasoning &amp; self-improvement</b></div>
-              </div>
             </div>
-            <figure className="timeline-card">
+
+            <div className="progressive-grid">
+              <p className="progressive-description milestone-description">
+                MLLMs Post-training has rapidly become a central mechanism for endowing pre-trained
+                MLLMs with the ability to exhibit more aligned and reliable behaviors, marking
+                significant progress in multimodal intelligence.
+              </p>
+              <p className="progressive-description venn-description">
+                MLLMs post-training connects multimodal learning with digital AI and physical AI,
+                representing a core step in the progression towards Artificial General
+                Intelligence (AGI).
+              </p>
+
+              <figure className="progressive-card milestone-figure">
+                <div className="progressive-image-wrap">
+                  <img
+                    src={asset("/figures/mllm-post-training-timeline.png")}
+                    alt="Timeline of key milestones in MLLM post-training from instruction following to online-policy distillation"
+                    loading="lazy"
+                  />
+                </div>
+                <figcaption>
+                  <span>FIG. 02</span>
+                  Key milestones of MLLMs post-training.
+                </figcaption>
+              </figure>
+              <figure className="progressive-card venn-figure">
+                <div className="progressive-image-wrap">
+                  <img
+                    src={asset("/figures/mllm-fields-venn.png")}
+                    alt="Venn diagram connecting MLLM post-training with multimodal learning, digital AI, physical AI, and AGI"
+                    loading="lazy"
+                  />
+                </div>
+                <figcaption>
+                  <span>FIG. 03</span>
+                  A Venn diagram showing the interrelationships among key AI fields.
+                </figcaption>
+              </figure>
+            </div>
+
+            <figure className="paper-figure landscape-figure">
               <img
-                src={asset("/figures/mllm_post_training_timeline.webp")}
-                alt="Key milestones in the development of MLLM post-training from 2022 to the present"
+                src={asset("/figures/mllm-post-training-landscape.png")}
+                alt="Timeline landscape of MLLM post-training research from 2023 to 2026 across five research families, datasets, and benchmarks"
                 loading="lazy"
               />
-              <figcaption>Key milestones in the development of MLLMs post-training.</figcaption>
+              <figcaption>
+                <span>FIG. 04</span>
+                An overall landscape of MLLMs post-training research: Instruction Following,
+                Preference Calibration, Reason Enhancement, Domain Adaptation, and Scalable
+                Learning, with datasets and benchmarks.
+              </figcaption>
             </figure>
           </div>
         </section>
@@ -391,7 +403,7 @@ export default function Home() {
                   alt="R1-style multimodal reasoning and thinking-with-images pipelines"
                   loading="lazy"
                 />
-                <figcaption><span>FIG. 02</span> R1-style reasoning and thinking with images.</figcaption>
+                <figcaption><span>FIG. 05</span> R1-style reasoning and thinking with images.</figcaption>
               </figure>
               <div className="reasoning-cards">
                 <article>

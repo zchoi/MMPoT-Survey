@@ -115,13 +115,27 @@ img {
 }
 
 .nav-brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 11px;
-  font-size: 14px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  white-space: nowrap;
+  position: relative;
+  display: block;
+  width: 185px;
+  height: 56px;
+  overflow: hidden;
+  flex: 0 0 auto;
+}
+
+.nav-brand-logo {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.nav-brand-logo img {
+  position: absolute;
+  top: -40px;
+  left: -43px;
+  width: 238px;
+  max-width: none;
+  mix-blend-mode: multiply;
 }
 
 .brand-mark {
@@ -264,6 +278,10 @@ img {
   font-weight: 750;
   letter-spacing: 0.13em;
   text-transform: uppercase;
+}
+
+.section-index {
+  font-size: 13px;
 }
 
 .eyebrow-dot {
@@ -696,7 +714,6 @@ img {
 }
 
 .section-heading h2,
-.timeline-copy h2,
 .citation-copy h2 {
   max-width: 800px;
   margin: 16px 0 0;
@@ -730,7 +747,6 @@ img {
 }
 
 .paper-figure figcaption,
-.timeline-card figcaption,
 .family-figure figcaption {
   margin-top: 16px;
   color: var(--muted);
@@ -757,47 +773,6 @@ img {
   font-size: 12px;
 }
 
-.contribution-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
-  margin-top: 28px;
-}
-
-.contribution-grid article {
-  min-height: 188px;
-  padding: 24px;
-  border: 1px solid rgba(23, 23, 42, 0.11);
-  border-radius: var(--radius-md);
-  background: rgba(255, 253, 248, 0.68);
-  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
-}
-
-.contribution-grid article:hover {
-  transform: translateY(-5px);
-  border-color: rgba(102, 84, 217, 0.28);
-  box-shadow: var(--shadow-sm);
-}
-
-.contribution-grid article > span {
-  color: var(--violet);
-  font-family: var(--font-geist-mono), monospace;
-  font-size: 10px;
-  font-weight: 750;
-}
-
-.contribution-grid h3 {
-  margin: 26px 0 8px;
-  font-size: 17px;
-  letter-spacing: -0.02em;
-}
-
-.contribution-grid p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 13px;
-}
-
 .timeline-section {
   border-block: 1px solid rgba(23, 23, 42, 0.1);
   background:
@@ -806,66 +781,90 @@ img {
   background-size: 52px 52px, auto;
 }
 
-.timeline-layout {
+.progressive-heading {
+  margin-bottom: 32px;
+}
+
+.progressive-grid {
   display: grid;
-  grid-template-columns: 0.75fr 1.25fr;
-  gap: 62px;
-  align-items: center;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  grid-template-areas:
+    "milestone-description venn-description"
+    "milestone-figure venn-figure";
+  gap: 24px 28px;
+  align-items: start;
 }
 
-.timeline-copy h2 {
-  font-size: clamp(35px, 4.5vw, 52px);
-}
-
-.timeline-copy > p {
-  margin: 24px 0 0;
-  color: var(--muted);
-  font-size: 15.5px;
-}
-
-.milestone-list {
-  display: grid;
-  gap: 0;
-  margin-top: 30px;
-  border-top: 1px solid var(--line);
-}
-
-.milestone-list div {
-  padding: 15px 0;
-  border-bottom: 1px solid var(--line);
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  align-items: baseline;
-}
-
-.milestone-list span {
-  color: var(--violet-dark);
-  font-family: var(--font-geist-mono), monospace;
-  font-size: 10px;
-  font-weight: 750;
-}
-
-.milestone-list b {
-  text-align: right;
-  font-size: 12px;
-}
-
-.timeline-card {
+.progressive-description {
   margin: 0;
-  padding: 24px;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.72;
+}
+
+.milestone-description { grid-area: milestone-description; }
+.venn-description { grid-area: venn-description; }
+.milestone-figure { grid-area: milestone-figure; }
+.venn-figure { grid-area: venn-figure; }
+
+.progressive-card {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin: 0;
+  padding: 18px;
   border: 1px solid rgba(102, 84, 217, 0.15);
   border-radius: 28px;
   background: rgba(255, 255, 255, 0.7);
   box-shadow: var(--shadow-sm);
 }
 
-.timeline-card img {
+.progressive-image-wrap {
+  min-height: 0;
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+}
+
+.progressive-card img {
+  display: block;
   width: 100%;
-  min-height: 230px;
-  object-fit: contain;
+  height: auto;
   border-radius: 16px;
   background: white;
+}
+
+.progressive-card figcaption {
+  width: 100%;
+  margin-top: 18px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(23, 23, 42, 0.1);
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.progressive-card figcaption span {
+  margin-right: 10px;
+  color: var(--violet-dark);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.landscape-figure {
+  margin-top: 52px;
+}
+
+.landscape-figure figcaption {
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.landscape-figure figcaption span {
+  font-size: 11px;
 }
 
 .taxonomy-section {
@@ -1472,10 +1471,6 @@ footer {
     margin: 0 auto;
   }
 
-  .contribution-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .family-tabs {
     grid-template-columns: repeat(5, minmax(180px, 1fr));
     overflow-x: auto;
@@ -1530,7 +1525,6 @@ footer {
   }
 
   .split-heading,
-  .timeline-layout,
   .family-panel,
   .reasoning-layout,
   .citation-layout {
@@ -1539,10 +1533,6 @@ footer {
 
   .split-heading {
     gap: 24px;
-  }
-
-  .timeline-layout {
-    gap: 38px;
   }
 
   .family-panel {
@@ -1602,7 +1592,14 @@ footer {
   }
 
   .nav-brand {
-    font-size: 13px;
+    width: 158px;
+    height: 48px;
+  }
+
+  .nav-brand-logo img {
+    top: -34px;
+    left: -37px;
+    width: 204px;
   }
 
   .hero {
@@ -1724,7 +1721,6 @@ footer {
   }
 
   .section-heading h2,
-  .timeline-copy h2,
   .citation-copy h2 {
     font-size: 38px;
   }
@@ -1745,20 +1741,35 @@ footer {
     border-radius: 12px;
   }
 
-  .contribution-grid {
+  .progressive-heading {
+    margin-bottom: 24px;
+  }
+
+  .progressive-grid {
     grid-template-columns: 1fr;
+    grid-template-areas:
+      "milestone-description"
+      "milestone-figure"
+      "venn-description"
+      "venn-figure";
+    gap: 18px;
   }
 
-  .contribution-grid article {
-    min-height: 150px;
+  .progressive-description {
+    font-size: 15px;
   }
 
-  .timeline-card {
-    padding: 14px;
+  .venn-description {
+    margin-top: 12px;
   }
 
-  .timeline-card img {
-    min-height: 170px;
+  .progressive-card {
+    padding: 12px;
+    border-radius: 20px;
+  }
+
+  .landscape-figure {
+    margin-top: 36px;
   }
 
   .family-tabs {
