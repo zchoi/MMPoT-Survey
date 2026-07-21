@@ -15,6 +15,20 @@ test("exports a complete paper landing page", async () => {
   assert.match(html, /Scalable Learning/);
   assert.match(html, /Awesome-Post-Training-for-MLLMs/);
   assert.doesNotMatch(html, /Starter Project|Your site is taking shape/);
+
+  const affiliationOrder = [
+    "Tongji University",
+    "Qwen-Character Team, Alibaba Group",
+    "Southwest Jiaotong University",
+    "University of Trento",
+    "ETH Zürich",
+  ];
+  let affiliationPosition = -1;
+  for (const affiliation of affiliationOrder) {
+    const nextPosition = html.indexOf(affiliation, affiliationPosition + 1);
+    assert.ok(nextPosition > affiliationPosition, `${affiliation} appears in the requested order`);
+    affiliationPosition = nextPosition;
+  }
 });
 
 test("ships the social card and core figures", async () => {
@@ -25,6 +39,11 @@ test("ships the social card and core figures", async () => {
       "figures/intro.png",
       "figures/mllm_post_training_timeline.webp",
       "figures/benchmark.webp",
+      "institutions/tongji.png",
+      "institutions/qwen.png",
+      "institutions/southwest-jiaotong.png",
+      "institutions/trento.svg",
+      "institutions/eth-zurich.png",
     ].map((path) => access(new URL(path, root))),
   );
 });

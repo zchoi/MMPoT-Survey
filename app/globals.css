@@ -362,7 +362,7 @@ img {
   background: rgba(255, 255, 255, 0.55);
   color: #5d5d6b;
   font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: 9.5px;
+  font-size: 10.5px;
   letter-spacing: 0.025em;
 }
 
@@ -438,6 +438,46 @@ img {
 
 .text-link:hover {
   color: var(--violet-dark);
+}
+
+.institution-logos {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 6px;
+  max-width: 720px;
+  margin: 28px auto 0;
+}
+
+.institution-card {
+  min-width: 0;
+  min-height: 78px;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.institution-logo {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.institution-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.institution-card:nth-child(4) .institution-logo img {
+  transform: scale(2.5);
+}
+
+.institution-card:nth-child(5) {
+  transform: translateX(6px);
 }
 
 .hero-system {
@@ -1616,6 +1656,26 @@ footer {
   .text-link {
     width: 100%;
     text-align: center;
+  }
+
+  .institution-logos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 22px;
+  }
+
+  .institution-card {
+    min-height: 78px;
+    padding: 4px 7px;
+  }
+
+  .institution-card:last-child {
+    grid-column: 1 / -1;
+    transform: none;
+  }
+
+  .institution-card:last-child .institution-logo {
+    max-width: 210px;
   }
 
   .hero-system {

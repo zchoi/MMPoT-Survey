@@ -12,13 +12,13 @@ const authors = [
   { name: "Pengpeng Zeng", affiliations: [1], corresponding: true },
   { name: "Libin Cao", affiliations: [1] },
   { name: "Wenrui Lai", affiliations: [1] },
-  { name: "Jinlong Li", affiliations: [3, 4] },
+  { name: "Jinlong Li", affiliations: [4, 5] },
   { name: "Duo Peng", affiliations: [1] },
   { name: "Yi Bin", affiliations: [1] },
   { name: "Xuanhan Wang", affiliations: [1] },
-  { name: "Ji Zhang", affiliations: [5] },
+  { name: "Ji Zhang", affiliations: [3] },
   { name: "Jingkuan Song", affiliations: [1] },
-  { name: "Nicu Sebe", affiliations: [3] },
+  { name: "Nicu Sebe", affiliations: [4] },
   { name: "Yuchuan Wu", affiliations: [2] },
   { name: "Yongbin Li", affiliations: [2] },
   { name: "Heng Tao Shen", affiliations: [1] },
@@ -26,11 +26,11 @@ const authors = [
 ];
 
 const affiliations = [
-  "School of Computer Science and Technology, Tongji University",
-  "Qwen-Character Team, Alibaba Group",
-  "Department of Information Engineering and Computer Science, University of Trento",
-  "Department of Computer Science, ETH Zürich",
-  "School of Computing and Artificial Intelligence, Southwest Jiaotong University",
+  { name: "Tongji University", logo: "/institutions/tongji.png" },
+  { name: "Qwen-Character Team, Alibaba Group", logo: "/institutions/qwen.png" },
+  { name: "Southwest Jiaotong University", logo: "/institutions/southwest-jiaotong.png" },
+  { name: "University of Trento", logo: "/institutions/trento.svg" },
+  { name: "ETH Zürich", logo: "/institutions/eth-zurich.png" },
 ];
 
 const familyData = {
@@ -200,9 +200,9 @@ export default function Home() {
 
               <div className="affiliations" aria-label="Affiliations">
                 {affiliations.map((affiliation, index) => (
-                  <span key={affiliation}>
+                  <span key={affiliation.name}>
                     <sup>{index + 1}</sup>
-                    {affiliation}
+                    {affiliation.name}
                   </span>
                 ))}
               </div>
@@ -222,6 +222,20 @@ export default function Home() {
                 <a className="text-link" href="#overview">
                   Explore the framework <span aria-hidden="true">↓</span>
                 </a>
+              </div>
+
+              <div className="institution-logos" aria-label="Affiliated institutions">
+                {affiliations.map((affiliation) => (
+                  <div className="institution-card" key={affiliation.name}>
+                    <div className="institution-logo">
+                      <img
+                        src={asset(affiliation.logo)}
+                        alt={`${affiliation.name} logo`}
+                        loading="eager"
+                      />
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
