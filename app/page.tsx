@@ -42,9 +42,13 @@ const familyData = {
     detail:
       "Visual instruction tuning aligns user intent, multimodal context, and model responses in one generative interface—from image dialogue to video, documents, and interleaved inputs.",
     methods: ["Visual SFT", "Data mixtures", "Fine-grained grounding"],
-    image: "/figures/instruction-tuning.webp",
-    alt: "Visual instruction-tuning pipeline for multimodal large language models",
-    caption: "Behavior shaping for instruction following through visual-language instruction tuning.",
+    figures: [
+      {
+        image: "/figures/instruction-tuning.png",
+        alt: "Visual instruction-tuning pipeline for multimodal large language models",
+        caption: "Behavior shaping for instruction following through visual-language instruction tuning.",
+      },
+    ],
   },
   preference: {
     number: "02",
@@ -54,9 +58,13 @@ const familyData = {
     detail:
       "Human and AI feedback distinguish preferred responses from weaker alternatives. RLHF, RLAIF, and direct preference optimization refine model policy beyond imitation alone.",
     methods: ["RLHF / RLAIF", "Reward modeling", "DPO"],
-    image: "/figures/preference-learning.webp",
-    alt: "RLHF, RLAIF, and DPO pipelines for multimodal preference calibration",
-    caption: "Preference signals can shape policy through learned rewards or direct optimization.",
+    figures: [
+      {
+        image: "/figures/preference-learning.png",
+        alt: "RLHF, RLAIF, and DPO pipelines for multimodal preference calibration",
+        caption: "Preference signals can shape policy through learned rewards or direct optimization.",
+      },
+    ],
   },
   reasoning: {
     number: "03",
@@ -66,9 +74,18 @@ const familyData = {
     detail:
       "R1-style reinforcement learning, thinking with images, self-evolution, and distillation move multimodal reasoning from text-only traces toward verifiable visual evidence and tool use.",
     methods: ["RLVR / GRPO", "Thinking with images", "Self-evolution"],
-    image: "/figures/R1-thinking-with-images.webp",
-    alt: "R1-style multimodal reasoning and thinking-with-images training paradigms",
-    caption: "Reasoning is shaped with format, accuracy, grounding, and visual tool-use rewards.",
+    figures: [
+      {
+        image: "/figures/r1-thinking-with-images.png",
+        alt: "R1-style multimodal reasoning and thinking-with-images training paradigms",
+        caption: "Reasoning is shaped with format, accuracy, grounding, and visual tool-use rewards.",
+      },
+      {
+        image: "/figures/self-evolution-opd.png",
+        alt: "Self-evolution and online policy distillation for multimodal reasoning",
+        caption: "Self-evolution and online policy distillation strengthen multimodal reasoning policies.",
+      },
+    ],
   },
   domain: {
     number: "04",
@@ -78,9 +95,13 @@ const familyData = {
     detail:
       "Domain adaptation jointly considers visual granularity, task interfaces, action spaces, and reliability—from GUI agents and document intelligence to medicine and autonomous driving.",
     methods: ["GUI agents", "Document & medical", "Embodied action"],
-    image: "/figures/domain-adaptation.webp",
-    alt: "Domain adaptation of multimodal models for GUI, medicine, and autonomous driving",
-    caption: "Specialized domains require perception, planning, action, and domain-aware feedback.",
+    figures: [
+      {
+        image: "/figures/domain-adaptation.png",
+        alt: "Domain adaptation of multimodal models for GUI, medicine, and autonomous driving",
+        caption: "Specialized domains require perception, planning, action, and domain-aware feedback.",
+      },
+    ],
   },
   scalable: {
     number: "05",
@@ -90,22 +111,33 @@ const familyData = {
     detail:
       "Parameter-efficient tuning, mixture-of-experts adaptation, token compression, and long-context optimization make multimodal post-training more practical at model and data scale.",
     methods: ["LoRA", "Mixture of experts", "Token compression"],
-    image: "/figures/lora-moe.webp",
-    alt: "Scalable multimodal post-training through distillation, LoRA, and mixture of experts",
-    caption: "Scalable learning spans knowledge transfer, efficient adaptation, and sparse routing.",
+    figures: [
+      {
+        image: "/figures/lora-moe.png",
+        alt: "Scalable multimodal post-training through LoRA and mixture-of-experts routing",
+        caption: "Efficient adaptation combines low-rank tuning with sparse mixture-of-experts routing.",
+      },
+      {
+        image: "/figures/kv-cache.png",
+        alt: "Compute-efficient multimodal learning with token compression and KV-cache optimization",
+        caption: "Token compression and KV-cache optimization reduce multimodal training and inference costs.",
+      },
+    ],
   },
 } as const;
 
 type FamilyKey = keyof typeof familyData;
 const familyKeys = Object.keys(familyData) as FamilyKey[];
 
-const citation = `@article{zhang2026survey,
-  title={A Survey on Post-Training of Multimodal Large Language Models},
-  author={Haonan Zhang and Pengpeng Zeng and Libin Cao and Wenrui Lai and
-          Jinlong Li and Duo Peng and Yi Bin and Xuanhan Wang and Ji Zhang and
-          Jingkuan Song and Nicu Sebe and Yuchuan Wu and Yongbin Li and
-          Heng Tao Shen and Jieping Ye},
-  year={2026}
+const citation = `@article{202607.1494,
+  doi = {10.20944/preprints202607.1494.v1},
+  url = {https://doi.org/10.20944/preprints202607.1494.v1},
+  year = 2026,
+  month = {July},
+  publisher = {Preprints},
+  author = {Haonan Zhang and Pengpeng Zeng and Libin Cao and Wenrui Lai and Jinlong Li and Duo Peng and Yi Bin and Xuanhan Wang and Ji Zhang and Jingkuan Song and Nicu Sebe and Yuchuan Wu and Yongbin Li and Heng Tao Shen and Jieping Ye},
+  title = {A Survey on Post-Training of Multimodal Large Language Models},
+  journal = {Preprints}
 }`;
 
 function ArrowIcon() {
@@ -114,9 +146,15 @@ function ArrowIcon() {
 
 export default function Home() {
   const [activeFamily, setActiveFamily] = useState<FamilyKey>("instruction");
+  const [activeFigure, setActiveFigure] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const family = familyData[activeFamily];
+
+  function selectFamily(key: FamilyKey) {
+    setActiveFamily(key);
+    setActiveFigure(0);
+  }
 
   async function copyCitation() {
     try {
@@ -158,7 +196,6 @@ export default function Home() {
           <div className={`nav-links ${menuOpen ? "is-open" : ""}`} id="site-links">
             <a href="#overview" onClick={closeMenu}>Overview</a>
             <a href="#taxonomy" onClick={closeMenu}>Taxonomy</a>
-            <a href="#reasoning" onClick={closeMenu}>Reasoning</a>
             <a href="#evaluation" onClick={closeMenu}>Evaluation</a>
             <a href="#outlook" onClick={closeMenu}>Outlook</a>
             <a className="nav-cta" href="#cite" onClick={closeMenu}>Cite</a>
@@ -333,15 +370,8 @@ export default function Home() {
 
         <section className="section taxonomy-section" id="taxonomy">
           <div className="shell">
-            <div className="section-heading split-heading">
-              <div>
-                <span className="section-index">02 / TAXONOMY</span>
-                <h2>Five behaviors. One shaping loop.</h2>
-              </div>
-              <p>
-                Select a family to trace its supervision signals, optimization mechanisms, and
-                resulting multimodal behavior.
-              </p>
+            <div className="taxonomy-heading">
+              <span className="section-index">02 / TAXONOMY</span>
             </div>
 
             <div className="family-tabs" role="tablist" aria-label="Post-training behavior families">
@@ -350,13 +380,14 @@ export default function Home() {
                 const selected = key === activeFamily;
                 return (
                   <button
+                    className={`family-tab ${selected ? "is-active" : ""}`}
                     type="button"
                     role="tab"
+                    id={`family-tab-${key}`}
                     aria-selected={selected}
                     aria-controls="family-panel"
-                    className={selected ? "is-active" : ""}
                     key={key}
-                    onClick={() => setActiveFamily(key)}
+                    onClick={() => selectFamily(key)}
                   >
                     <span>{item.number}</span>
                     <small>{item.tag}</small>
@@ -367,7 +398,12 @@ export default function Home() {
               })}
             </div>
 
-            <div className="family-panel" id="family-panel" role="tabpanel">
+            <article
+              className="family-panel"
+              id="family-panel"
+              role="tabpanel"
+              aria-labelledby={`family-tab-${activeFamily}`}
+            >
               <div className="family-panel-copy">
                 <span className="family-number">{family.number}</span>
                 <div className="family-label">{family.tag} / BEHAVIOR</div>
@@ -377,49 +413,49 @@ export default function Home() {
                   {family.methods.map((method) => <span key={method}>{method}</span>)}
                 </div>
               </div>
-              <figure className={`family-figure family-${activeFamily}`}>
-                <img src={asset(family.image)} alt={family.alt} loading="lazy" />
-                <figcaption>{family.caption}</figcaption>
-              </figure>
-            </div>
-          </div>
-        </section>
 
-        <section className="section reasoning-section" id="reasoning">
-          <div className="shell">
-            <div className="section-heading centered-heading">
-              <span className="section-index">03 / REASON ENHANCEMENT</span>
-              <h2>Thinking beyond language alone</h2>
-              <p>
-                Multimodal reasoning becomes grounded when evidence, intermediate visual actions,
-                and verifiable outcomes participate in the learning signal.
-              </p>
-            </div>
+              <div className="family-carousel">
+                <div
+                  className="family-carousel-track"
+                  style={{ transform: `translateX(-${activeFigure * 100}%)` }}
+                >
+                  {family.figures.map((figure, index) => (
+                    <figure
+                      className="family-figure"
+                      aria-hidden={index !== activeFigure}
+                      key={figure.image}
+                    >
+                      <img src={asset(figure.image)} alt={figure.alt} loading="lazy" />
+                      <figcaption>{figure.caption}</figcaption>
+                    </figure>
+                  ))}
+                </div>
 
-            <div className="reasoning-layout">
-              <figure className="paper-figure reasoning-figure">
-                <img
-                  src={asset("/figures/R1-thinking-with-images.webp")}
-                  alt="R1-style multimodal reasoning and thinking-with-images pipelines"
-                  loading="lazy"
-                />
-                <figcaption><span>FIG. 05</span> R1-style reasoning and thinking with images.</figcaption>
-              </figure>
-              <div className="reasoning-cards">
-                <article>
-                  <span>R1</span>
-                  <div><h3>Verifiable reasoning</h3><p>RLVR and GRPO elicit structured reasoning with format and outcome rewards.</p></div>
-                </article>
-                <article>
-                  <span>VIS</span>
-                  <div><h3>Thinking with images</h3><p>Models ground steps in regions, points, crops, visual tools, and latent visual states.</p></div>
-                </article>
-                <article>
-                  <span>SELF</span>
-                  <div><h3>Self-evolution</h3><p>Generate, critique, revise, and distill trajectories into stronger multimodal policies.</p></div>
-                </article>
+                {family.figures.length > 1 && (
+                  <div className="family-carousel-controls">
+                    <span aria-live="polite">
+                      {String(activeFigure + 1).padStart(2, "0")} / {String(family.figures.length).padStart(2, "0")}
+                    </span>
+                    <div>
+                      <button
+                        type="button"
+                        aria-label={`Previous ${family.title} figure`}
+                        onClick={() => setActiveFigure((activeFigure - 1 + family.figures.length) % family.figures.length)}
+                      >
+                        ←
+                      </button>
+                      <button
+                        type="button"
+                        aria-label={`Next ${family.title} figure`}
+                        onClick={() => setActiveFigure((activeFigure + 1) % family.figures.length)}
+                      >
+                        →
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
-            </div>
+            </article>
           </div>
         </section>
 
@@ -427,7 +463,7 @@ export default function Home() {
           <div className="shell">
             <div className="section-heading split-heading light-heading">
               <div>
-                <span className="section-index">04 / EVALUATION</span>
+                <span className="section-index">03 / EVALUATION</span>
                 <h2>Desired behavior needs visible evidence.</h2>
               </div>
               <p>
@@ -438,17 +474,30 @@ export default function Home() {
 
             <figure className="evaluation-figure">
               <img
-                src={asset("/figures/benchmark.webp")}
+                src={asset("/figures/benchmark.png")}
                 alt="Evaluation system for MLLM post-training datasets and benchmarks"
                 loading="lazy"
               />
+              <figcaption>Overview of the evaluation system of MMPoT.</figcaption>
             </figure>
 
             <div className="metric-grid">
-              <article><span>IF</span><h3>Instruction following</h3><p>MME · MMBench · MM-Vet · MIA-Bench</p></article>
-              <article><span>PC</span><h3>Preference &amp; safety</h3><p>POPE · MMHal-Bench · HallusionBench</p></article>
-              <article><span>RE</span><h3>Reason enhancement</h3><p>MMMU · MathVista · MME-CoT</p></article>
-              <article><span>DA</span><h3>Domain adaptation</h3><p>DocVQA · OCRBench · ChartQA · ScreenSpot</p></article>
+              <article>
+                <h3>Instruction Following</h3>
+                <p>MME · MMBench · MM-Vet · SEED-Bench · MM-IFEval · MIA-Bench</p>
+              </article>
+              <article>
+                <h3>Preference Calibration</h3>
+                <p>POPE · MMHal-Bench · HallusionBench · SafeBench · Multimodal RewardBench · VL-RewardBench</p>
+              </article>
+              <article>
+                <h3>Reason Enhancement</h3>
+                <p>MMMU · MMMU-Pro · MathVista · MathVerse · We-Math · LogicVista</p>
+              </article>
+              <article>
+                <h3>Domain Adaptation</h3>
+                <p>ScreenSpot · OSWorld · DocVQA · OCRBench · SLAKE · DriveLM</p>
+              </article>
             </div>
 
             <div className="evaluation-note">
@@ -462,7 +511,7 @@ export default function Home() {
           <div className="shell">
             <div className="section-heading split-heading">
               <div>
-                <span className="section-index">05 / FUTURE DIRECTIONS</span>
+                <span className="section-index">04 / FUTURE DIRECTIONS</span>
                 <h2>Toward dependable multimodal intelligence</h2>
               </div>
               <p>
@@ -497,7 +546,7 @@ export default function Home() {
         <section className="section citation-section" id="cite">
           <div className="shell citation-layout">
             <div className="citation-copy">
-              <span className="section-index">06 / CITATION</span>
+              <span className="section-index">05 / CITATION</span>
               <h2>Build on the survey.</h2>
               <p>
                 The companion repository continuously curates papers, code, datasets, and project

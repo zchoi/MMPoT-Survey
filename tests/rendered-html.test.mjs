@@ -18,6 +18,8 @@ test("exports a complete paper landing page", async () => {
   assert.match(html, /Key milestones of MLLMs post-training/);
   assert.match(html, /A Venn diagram showing the interrelationships among key AI fields/);
   assert.match(html, /An overall landscape of MLLMs post-training research/);
+  assert.doesNotMatch(html, /Five behaviors\. One shaping loop\./);
+  assert.doesNotMatch(html, /Select a family to trace its supervision signals/);
   assert.doesNotMatch(html, /Starter Project|Your site is taking shape/);
   assert.doesNotMatch(
     html,
@@ -49,7 +51,14 @@ test("ships the social card and core figures", async () => {
       "figures/mllm-post-training-timeline.png",
       "figures/mllm-fields-venn.png",
       "figures/mllm-post-training-landscape.png",
-      "figures/benchmark.webp",
+      "figures/instruction-tuning.png",
+      "figures/preference-learning.png",
+      "figures/r1-thinking-with-images.png",
+      "figures/self-evolution-opd.png",
+      "figures/domain-adaptation.png",
+      "figures/lora-moe.png",
+      "figures/kv-cache.png",
+      "figures/benchmark.png",
       "institutions/tongji.png",
       "institutions/qwen.png",
       "institutions/southwest-jiaotong.png",
