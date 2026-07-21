@@ -29,7 +29,7 @@ const affiliations = [
   { name: "Tongji University", logo: "/institutions/tongji.png" },
   { name: "Qwen-Character Team, Alibaba Group", logo: "/institutions/qwen.png" },
   { name: "Southwest Jiaotong University", logo: "/institutions/southwest-jiaotong.png" },
-  { name: "University of Trento", logo: "/institutions/trento.svg" },
+  { name: "University of Trento", logo: "/institutions/trento.png" },
   { name: "ETH Zürich", logo: "/institutions/eth-zurich.png" },
 ];
 
