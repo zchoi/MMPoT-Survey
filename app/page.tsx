@@ -136,15 +136,14 @@ const familyData = {
 type FamilyKey = keyof typeof familyData;
 const familyKeys = Object.keys(familyData) as FamilyKey[];
 
-const citation = `@article{202607.1494,
-  doi = {10.20944/preprints202607.1494.v1},
-  url = {https://doi.org/10.20944/preprints202607.1494.v1},
-  year = 2026,
-  month = {July},
-  publisher = {Preprints},
-  author = {Haonan Zhang and Pengpeng Zeng and Libin Cao and Wenrui Lai and Jinlong Li and Duo Peng and Yi Bin and Xuanhan Wang and Ji Zhang and Jingkuan Song and Nicu Sebe and Yuchuan Wu and Yongbin Li and Heng Tao Shen and Jieping Ye},
-  title = {A Survey on Post-Training of Multimodal Large Language Models},
-  journal = {Preprints}
+const citation = `@article{zhang2026survey,
+  title={A Survey on Post-Training of Multimodal Large Language Models},
+  author={Haonan Zhang and Pengpeng Zeng and Libin Cao and Wenrui Lai and
+          Jinlong Li and Duo Peng and Yi Bin and Xuanhan Wang and Ji Zhang and
+          Jingkuan Song and Nicu Sebe and Yuchuan Wu and Yongbin Li and
+          Heng Tao Shen and Jieping Ye},
+  year={2026},
+  publisher={Preprints}
 }`;
 
 function ArrowIcon() {
