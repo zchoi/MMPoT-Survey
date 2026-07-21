@@ -46,7 +46,8 @@ const familyData = {
       {
         image: "/figures/instruction-tuning.png",
         alt: "Visual instruction-tuning pipeline for multimodal large language models",
-        caption: "Behavior shaping for instruction following through visual-language instruction tuning.",
+        caption:
+          "A basic view of behavior shaping for instruction following. Left: A prompt template for organizing multimodal instruction data. We use the built-in Jinja template from Hugging Face's llava-hf/llava-1.5-7b-hf as an example; it supports both training and inference. Right: The instruction-tuning paradigm used to train MLLMs. VL Inst. T: Vision-Language Instruction Tuning.",
       },
     ],
   },
@@ -62,7 +63,8 @@ const familyData = {
       {
         image: "/figures/preference-learning.png",
         alt: "RLHF, RLAIF, and DPO pipelines for multimodal preference calibration",
-        caption: "Preference signals can shape policy through learned rewards or direct optimization.",
+        caption:
+          "A basic view of behavior shaping for preference calibration. Top: A pipeline for reinforcement learning from human or AI feedback (RLHF and RLAIF, respectively). Bottom: A pipeline for direct preference optimization (DPO).",
       },
     ],
   },
@@ -78,12 +80,14 @@ const familyData = {
       {
         image: "/figures/r1-thinking-with-images.png",
         alt: "R1-style multimodal reasoning and thinking-with-images training paradigms",
-        caption: "Reasoning is shaped with format, accuracy, grounding, and visual tool-use rewards.",
+        caption:
+          "A basic view of behavior shaping for reason enhancement through R1-style reasoning and thinking with images. The former (left) reasons solely in natural language, whereas the latter (right) integrates explicit visual cues (e.g., bbox, point, and Seg.) in a chain-of-thought manner.",
       },
       {
         image: "/figures/self-evolution-opd.png",
         alt: "Self-evolution and online policy distillation for multimodal reasoning",
-        caption: "Self-evolution and online policy distillation strengthen multimodal reasoning policies.",
+        caption:
+          "A basic view of behavior shaping through self-evolution and distillation for reason enhancement.",
       },
     ],
   },
@@ -99,7 +103,8 @@ const familyData = {
       {
         image: "/figures/domain-adaptation.png",
         alt: "Domain adaptation of multimodal models for GUI, medicine, and autonomous driving",
-        caption: "Specialized domains require perception, planning, action, and domain-aware feedback.",
+        caption:
+          "A basic view of behavior shaping for domain adaptation. Ins. T: Instruction-tuning.",
       },
     ],
   },
@@ -115,12 +120,14 @@ const familyData = {
       {
         image: "/figures/lora-moe.png",
         alt: "Scalable multimodal post-training through LoRA and mixture-of-experts routing",
-        caption: "Efficient adaptation combines low-rank tuning with sparse mixture-of-experts routing.",
+        caption:
+          "A basic view of behavior shaping through parameter-efficient post-training for scalable learning.",
       },
       {
         image: "/figures/kv-cache.png",
         alt: "Compute-efficient multimodal learning with token compression and KV-cache optimization",
-        caption: "Token compression and KV-cache optimization reduce multimodal training and inference costs.",
+        caption:
+          "A basic view of behavior shaping through compute-efficient post-training for scalable learning.",
       },
     ],
   },
@@ -244,17 +251,39 @@ export default function Home() {
               </div>
 
               <div className="hero-actions">
-                <span className="button button-primary button-disabled" aria-disabled="true">
-                  Paper · Coming soon
-                </span>
-                <a
-                  className="button button-secondary"
-                  href="https://github.com/zchoi/Awesome-Post-Training-for-MLLMs"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Awesome list <ArrowIcon />
-                </a>
+                <div className="hero-button-row" aria-label="Paper resources">
+                  <a
+                    className="button button-primary"
+                    href="https://zchoi.github.io/MMPoT-Survey/preprint.pdf"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <img className="button-icon" src={asset("/icons/paper.png")} alt="" />
+                    Paper
+                  </a>
+                  <a
+                    className="button button-secondary"
+                    href="https://www.preprints.org/manuscript/202607.1494"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <img className="button-icon" src={asset("/icons/preprints.png")} alt="" />
+                    Preprints
+                  </a>
+                  <a
+                    className="button button-secondary"
+                    href="https://github.com/zchoi/Awesome-Post-Training-for-MLLMs"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <img className="button-icon" src={asset("/icons/github.svg")} alt="" />
+                    Awesome
+                  </a>
+                  <span className="button button-secondary button-disabled" aria-disabled="true">
+                    <img className="button-icon" src={asset("/icons/rednote.svg")} alt="" />
+                    RedNote
+                  </span>
+                </div>
                 <a className="text-link" href="#overview">
                   Explore the framework <span aria-hidden="true">↓</span>
                 </a>
@@ -478,7 +507,10 @@ export default function Home() {
                 alt="Evaluation system for MLLM post-training datasets and benchmarks"
                 loading="lazy"
               />
-              <figcaption>Overview of the evaluation system of MMPoT.</figcaption>
+              <figcaption>
+                <span>FIG. 05</span>
+                Overview of the evaluation system of MMPoT.
+              </figcaption>
             </figure>
 
             <div className="metric-grid">
@@ -515,28 +547,98 @@ export default function Home() {
                 <h2>Toward dependable multimodal intelligence</h2>
               </div>
               <p>
-                The next frontier is not just a stronger benchmark score. It is behavior that stays
-                grounded, reliable, and adaptive as the world changes.
+                Key directions for advancing MLLM post-training beyond current paradigms fall into
+                three complementary themes: grounded behavior shaping, reliability-aware evaluation,
+                and scaling for generalization.
               </p>
             </div>
 
             <div className="outlook-grid">
-              <article className="outlook-main">
+              <article className="outlook-card outlook-card-grounded">
                 <span>01</span>
                 <h3>Grounded behavior shaping</h3>
-                <p>Learn from native spatial, temporal, acoustic, and interactive signals—not text as a proxy for every modality.</p>
+                <p className="outlook-lead">
+                  Post-training should learn behavior directly from multimodal evidence instead of
+                  organizing every modality around language-style supervision.
+                </p>
+                <div className="outlook-points">
+                  <div className="outlook-point">
+                    <h4>Native Multimodal Post-Training</h4>
+                    <p>
+                      Most pipelines eventually align visual, video, or audio inputs to text responses.
+                      Native signals should preserve spatial layout, temporal continuity, acoustic cues,
+                      and cross-modal correspondence, allowing models to learn from modality-specific
+                      structure rather than treating non-text inputs as auxiliary context.
+                    </p>
+                  </div>
+                  <div className="outlook-point">
+                    <h4>From Digital Understanding to Physical Interaction</h4>
+                    <p>
+                      Future agents must move beyond understanding digital images, videos, documents,
+                      and screens. Post-training should connect perception with action-oriented reasoning
+                      in continuous environments where actions change the world and feedback can be
+                      delayed or uncertain.
+                    </p>
+                  </div>
+                </div>
                 <div className="outlook-tags"><b>Native multimodality</b><b>Physical interaction</b></div>
               </article>
-              <article>
+              <article className="outlook-card outlook-card-reliability">
                 <span>02</span>
                 <h3>Reliability-aware evaluation</h3>
-                <p>Expose hallucination, overconfidence, shortcut reasoning, and instability in complex real-world scenarios.</p>
+                <p className="outlook-lead">
+                  Evaluation must reveal whether improved scores correspond to grounded, calibrated,
+                  safe, and stable behavior.
+                </p>
+                <div className="outlook-points">
+                  <div className="outlook-point">
+                    <h4>Trustworthy Evaluation</h4>
+                    <p>
+                      High benchmark accuracy does not guarantee reliability. New metrics should diagnose
+                      visual grounding, calibration, consistency, safety, and robustness under distribution
+                      shift—exposing hallucination, overconfidence, shortcut reasoning, and unstable responses
+                      rather than rewarding only final-answer correctness.
+                    </p>
+                  </div>
+                  <div className="outlook-point">
+                    <h4>Complex Real-world Scenarios</h4>
+                    <p>
+                      Real applications contain ambiguous evidence, long-horizon context, changing
+                      environments, and interaction constraints. Benchmarks should move beyond static
+                      images and closed-form QA so models must maintain state, handle uncertainty, and
+                      adapt across continuous multimodal inputs.
+                    </p>
+                  </div>
+                </div>
                 <div className="outlook-tags"><b>Trustworthiness</b><b>Robustness</b></div>
               </article>
-              <article>
+              <article className="outlook-card outlook-card-scaling">
                 <span>03</span>
                 <h3>Scaling for generalization</h3>
-                <p>Transfer behavior across tasks, domains, and modalities while continually learning without uncontrolled drift.</p>
+                <p className="outlook-lead">
+                  Scaling should produce reusable behaviors that transfer across tasks, domains,
+                  modalities, and continuously changing worlds.
+                </p>
+                <div className="outlook-points">
+                  <div className="outlook-point">
+                    <h4>Post-training Scaling toward Generalist MLLMs</h4>
+                    <p>
+                      Progress requires more than additional data or compute. We need to understand how
+                      diverse supervision signals, model capacity, and optimization jointly drive
+                      generalization, enabling learned behaviors to be composed, reused, and adapted beyond
+                      the datasets, task formats, and reward functions seen during training.
+                    </p>
+                  </div>
+                  <div className="outlook-point">
+                    <h4>Streaming Understanding of a Continuously Unfolding World</h4>
+                    <p>
+                      MLLMs need persistent memory, temporal event abstraction, selective retrieval, online
+                      feedback integration, and continual adaptation. They should absorb new experiences
+                      while preserving previous capabilities, maintaining behavioral consistency, and
+                      avoiding catastrophic forgetting or uncontrolled model drift.
+                    </p>
+                  </div>
+                </div>
                 <div className="outlook-tags"><b>Generalist MLLMs</b><b>Streaming worlds</b></div>
               </article>
             </div>
@@ -581,7 +683,7 @@ export default function Home() {
             <p>A Survey on Post-training of Multimodal Large Language Models</p>
           </div>
           <div className="footer-links">
-            <span className="footer-disabled">Paper · link pending</span>
+            <a href="https://zchoi.github.io/MMPoT-Survey/preprint.pdf" target="_blank" rel="noreferrer">Paper</a>
             <a href="https://github.com/zchoi/Awesome-Post-Training-for-MLLMs" target="_blank" rel="noreferrer">GitHub</a>
             <a href="mailto:is.pengpengzeng@gmail.com">Contact</a>
           </div>
