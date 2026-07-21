@@ -472,14 +472,6 @@ img {
   object-fit: contain;
 }
 
-.institution-card:nth-child(4) .institution-logo img {
-  transform: scale(1.5);
-}
-
-.institution-card:nth-child(5) {
-  transform: translateX(6px);
-}
-
 .hero-system {
   position: relative;
   min-height: 620px;
