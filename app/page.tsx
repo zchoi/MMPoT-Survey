@@ -278,10 +278,15 @@ export default function Home() {
                     <img className="button-icon" src={asset("/icons/github.svg")} alt="" />
                     Awesome
                   </a>
-                  <span className="button button-secondary button-disabled" aria-disabled="true">
+                  <a
+                    className="button button-secondary"
+                    href="http://xhslink.com/o/8bjWYAaEe7K"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     <img className="button-icon" src={asset("/icons/rednote.svg")} alt="" />
                     RedNote
-                  </span>
+                  </a>
                 </div>
                 <a className="text-link" href="#overview">
                   Explore the framework <span aria-hidden="true">↓</span>
